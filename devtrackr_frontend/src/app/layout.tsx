@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import React from "react";
+import { OrgProvider } from "@/components/OrgContext";
+import { AppShell } from "@/components/AppShell";
 
 export const metadata: Metadata = {
-  title: "Minimal Next.js App",
-  description: "Ultra-minimal Next.js application",
+  title: "DevTrackr",
+  description:
+    "Retro-themed developer analytics console for GitHub/GitLab repo sync, PR summaries, risk scoring, and dashboards.",
 };
 
 export default function RootLayout({
@@ -14,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        {children}
+        <OrgProvider>
+          <AppShell>{children}</AppShell>
+        </OrgProvider>
       </body>
     </html>
   );
